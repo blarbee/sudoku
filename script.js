@@ -3,8 +3,9 @@
 // console.log("hi");
 // console.log(cell00.innerHTML);
 
-var num_selected = null;
-var cell_selected = null;
+let grid_solution 
+let difficulty = null;
+let selected_cell = null;
 
 window.onload = function(){setGame();}
 
@@ -18,29 +19,112 @@ function setGame(){
 
         // console.log(data.newboard.grids[0].value[0]);
 
-        for( let i = 0; i < 9; i++){ // loop over the rows
+        fill_up_the_starting_grid(data);
 
-            for( let j = 0; j < 9; j++){ // loop over the cols
-                let empty_cell = document.getElementById(i + "-" + j);
+        grid_solution = data.newboard.grids[0].solution;
 
-                let og_value = data.newboard.grids[0].value[i][j];
-                // console.log(og_value);
-
-                if(og_value != 0){
-                    empty_cell.innerHTML = og_value;
-                }
-                
-            
-
-            }
+        if(grid_is_full()){
+            check_if_completed_grid_is_valid();
         }
+
+        document.getElementById("difficulty").innerHTML = data.newboard.grids[0].difficulty;
+
     })
     .catch(error => console.error(error));
+    select_cell();
+    write_number();
 }
 
 
-function selectedNumber(){
-    num_selected = this;
-    num_selected.classList.add("num_selected");
-    console.log(num_selected.classList.add("num_selected"));
+function fill_up_the_starting_grid(data){
+    for( let i = 0; i < 9; i++){ // loop over the rows
+
+        for( let j = 0; j < 9; j++){ // loop over the cols
+            let empty_cell = document.getElementById(i + "-" + j);
+
+            let og_value = data.newboard.grids[0].value[i][j];
+            // console.log(og_value);
+
+            if(og_value != 0){
+                empty_cell.innerHTML = og_value;
+            }
+        }
+    }
+}
+
+function check_if_completed_grid_is_valid(){
+    // let grid  = document.getElementById("grid");
+    // console.log(grid);
+
+    // for( let i = 0; i < 9; i++){ // loop over the rows
+
+    //     for( let j = 0; j < 9; j++){ // loop over the cols
+    //         let cell = document.getElementById(i + "-" + j);
+
+    //         if(cell.innerHTML == grid_solution[i][j]){
+    //             console.log("true " + cell.innerHTML, grid_solution[i][j]);
+    //         }
+    //     }
+    // }
+
+    if(JSON.stringify(grid) === JSON.stringify(grid_solution)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function write_number(){
+    let selected_number = document.getElementsByClassName('number_button');
+
+    for(let i = 0; i < selected_number.length; i++) {
+        selected_number[i].addEventListener("click", function() {
+
+            if(selected_cell){
+                selected_cell.innerHTML = selected_number[i].id;
+                // console.log(selected_number[i].id);
+                // console.log(selected_cell);
+            }
+        })
+    }
+}
+
+function select_cell(){
+    cells = document.getElementsByClassName('cell');
+
+    for(let i = 0; i < cells.length; i++) {
+        cells[i].addEventListener("click", function() {
+
+
+            if(cells[i].classList.contains("selected")){
+
+                cells[i].classList.remove("selected");
+                console.log(cells[i].id + " is unselected");
+
+            }else{
+                // TODO: doesnt seem optimal to loop that much, do better soon
+                for (let j = 0; j < cells.length; j++) {
+                    cells[j].classList.remove("selected");
+                    // console.log(selected_cell[j].id + " is deselected automatically");
+                }
+
+                cells[i].classList.add("selected");
+                selected_cell = document.getElementById(cells[i].id);
+                console.log(cells[i].id + " is selected");
+
+            }
+            // TODO: Add highlight the row and col of the selected_cell (possibly also add highlight other occurences of said selected_cell's innerhtml in the row/col)
+            // if(selected_cell){
+            //     console.log("row: " + Math.floor(i/9)); //row of the selected cell
+            //     console.log("col: " + i%9); //colomn the selected cell
+            // }
+        })
+    }
+}
+
+
+function grid_is_full(){
+
+
+
 }

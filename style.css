@@ -1,3 +1,11 @@
+:root.black {
+    --text: #e6e6e9;
+    --background: #000000;
+    --primary: #66666e;
+    --secondary: #9999a1;
+    --tertiary: #f4f4f6;
+}
+
 *{
     margin:0;
     padding:0;
@@ -8,40 +16,52 @@
 }
 
 body {
-    background-color: black;
-    color:purple;
+    background-color: var(--background);
+    color:var(--text);
+    height: calc(100vh/2);
+}
+/* ===================================================== HEADER */
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: calc(100vh/99);
+
+
 }
 /* ===================================================== GRID */
 #grid {
-    border: 3px solid black;
+    border: 3px solid var(--primary);
     margin:auto;
-    margin-top: calc(100vh/4);
+    margin-top: calc(100vh/10);
 }
 /* ===================================================== ROWS */
 .row {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--primary);
     display:block;
 }
 
 .row:nth-child(3), .row:nth-child(6) {
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid var(--primary);
 }
 /* ===================================================== CELLS */
 .cell {
-    border-right: 1px solid black;
+    border-right: 1px solid var(--primary);
     height: calc(100vh/20);
     width: calc(100vh/20);
     appearance: none;
     -webkit-appearance: none;
     /* -moz-appearance: textfield; */
     text-align: center;
-    font-size: 3vh;
-    background-color: darkgrey;
-    color:black;
+    font-size: 2.8vh;
+    background-color: var(--secondary);
+    color:var(--background);
 }
 
 .cell:nth-child(3), .cell:nth-child(6) {
-    border-right: 3px solid black;
+    border-right: 3px solid var(--primary);
 }
 /* ===================================================== NUMBER BUTTONS */
 
@@ -55,18 +75,29 @@ body {
 }
 
 .number_button{
-    height: calc(100vh/20);
-    width: calc(100vh/20);
+    height: calc(100vh/22);
+    width: calc(100vh/22);
     text-align: center;
-    font-size: 3vh;
-    background-color: darkgrey;
+    font-size: 2.8vh;
+    background-color: var(--secondary);
     color:black;
 
-    margin: 1px;
+    margin: 3px;
+    margin-top: calc(100vh/99);
 }
 
-.num_selected{
-    background-color: red;
+.number_button:active {
+    background-color: var(--primary);
+}
+.selected{
+    background-color: var(--text);
 }
 
+/* ===================================================== FOOTER */
+footer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
+    bottom:0;
+}
