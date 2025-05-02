@@ -3,11 +3,17 @@
 // console.log("hi");
 // console.log(cell00.innerHTML);
 
+const setTheme = theme => document.documentElement.className = theme;
+
 let grid_solution 
+let cells = null;
 let difficulty = null;
 let selected_cell = null;
 
+
+
 window.onload = function(){setGame();}
+window.setInterval(grid_is_full, 1000);
 
 function setGame(){
     fetch("https://sudoku-api.vercel.app/api/dosuku")
@@ -23,9 +29,7 @@ function setGame(){
 
         grid_solution = data.newboard.grids[0].solution;
 
-        if(grid_is_full()){
-            check_if_completed_grid_is_valid();
-        }
+
 
         document.getElementById("difficulty").innerHTML = data.newboard.grids[0].difficulty;
 
@@ -33,6 +37,7 @@ function setGame(){
     .catch(error => console.error(error));
     select_cell();
     write_number();
+
 }
 
 
@@ -47,6 +52,8 @@ function fill_up_the_starting_grid(data){
 
             if(og_value != 0){
                 empty_cell.innerHTML = og_value;
+                empty_cell.classList.add("starting_cell");
+                console.log(empty_cell);
             }
         }
     }
@@ -66,12 +73,17 @@ function check_if_completed_grid_is_valid(){
     //         }
     //     }
     // }
-
-    if(JSON.stringify(grid) === JSON.stringify(grid_solution)){
-        return true;
-    }else{
-        return false;
+    if(grid_is_full){
+        if(JSON.stringify(grid) === JSON.stringify(grid_solution)){
+            alert("you win");
+            window.clearInterval();
+            return true;
+        }else{
+            return false;
+        }
     }
+
+
 }
 
 function write_number(){
@@ -91,6 +103,7 @@ function write_number(){
 
 function select_cell(){
     cells = document.getElementsByClassName('cell');
+    
 
     for(let i = 0; i < cells.length; i++) {
         cells[i].addEventListener("click", function() {
@@ -99,7 +112,7 @@ function select_cell(){
             if(cells[i].classList.contains("selected")){
 
                 cells[i].classList.remove("selected");
-                console.log(cells[i].id + " is unselected");
+                // console.log(cells[i].id + " is unselected");
 
             }else{
                 // TODO: doesnt seem optimal to loop that much, do better soon
@@ -110,7 +123,7 @@ function select_cell(){
 
                 cells[i].classList.add("selected");
                 selected_cell = document.getElementById(cells[i].id);
-                console.log(cells[i].id + " is selected");
+                // console.log(cells[i].id + " is selected");
 
             }
             // TODO: Add highlight the row and col of the selected_cell (possibly also add highlight other occurences of said selected_cell's innerhtml in the row/col)
@@ -124,7 +137,17 @@ function select_cell(){
 
 
 function grid_is_full(){
-
-
+    
+    for(let i = 0; i<cells.length; i++){
+        if(cells[i].innerHTML == ""){
+            // console.log("the grid is not full");
+            // console.log(cells[i].innerHTML);
+            check_if_completed_grid_is_valid();
+            return false;
+        }
+        // console.log(cells[i].innerHTML);      
+    }
+    // console.log("the grid is full");  
+    return true;
 
 }

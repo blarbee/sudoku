@@ -1,9 +1,35 @@
-:root.black {
+:root, :root.black {
     --text: #e6e6e9;
     --background: #000000;
     --primary: #66666e;
     --secondary: #9999a1;
     --tertiary: #f4f4f6;
+    --starting_cell: #87878f;
+
+    --radius: 6px;
+}
+:root.blue {
+    --text: #e7ecef;
+    --background: #274c77;
+    --primary: #6096ba;
+    --secondary: #a3cef1;
+    --tertiary: #8b8c89;
+    --starting_cell: #8cbbe1;
+
+    --radius: 6px;
+
+}
+:root.purple {
+    --text: #f4f4f6;
+    --background: #2E005D;
+    --primary: #5C008B;
+    --secondary: #c2b3d1;
+    --tertiary: #FF8300;
+
+    --starting_cell: #ad9abf;
+
+    --radius: 6px;
+
 }
 
 *{
@@ -19,6 +45,8 @@ body {
     background-color: var(--background);
     color:var(--text);
     height: calc(100vh/2);
+
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 /* ===================================================== HEADER */
 header{
@@ -28,12 +56,15 @@ header{
     align-items: center;
 
     margin-top: calc(100vh/99);
+}
 
-
+#difficulty{
+    margin-bottom: 1%;
 }
 /* ===================================================== GRID */
 #grid {
     border: 3px solid var(--primary);
+    border-radius: var(--radius);
     margin:auto;
     margin-top: calc(100vh/10);
 }
@@ -63,6 +94,10 @@ header{
 .cell:nth-child(3), .cell:nth-child(6) {
     border-right: 3px solid var(--primary);
 }
+
+.starting_cell {
+    background-color: var(--starting_cell);
+}
 /* ===================================================== NUMBER BUTTONS */
 
 #number_line{
@@ -80,17 +115,29 @@ header{
     text-align: center;
     font-size: 2.8vh;
     background-color: var(--secondary);
-    color:black;
+    color:var(--background);
+
+    border-radius: var(--radius);
+    box-shadow: var(--tertiary) 10px;
 
     margin: 3px;
     margin-top: calc(100vh/99);
 }
 
 .number_button:active {
-    background-color: var(--primary);
+    background-color: var(--tertiary);
 }
 .selected{
     background-color: var(--text);
+}
+/* ===================================================== OPTION BUTTONS */
+#black, #blue, #purple, #easy_button, #medium_button, #hard_button {
+    background-color: var(--secondary);
+    color: var(--background);
+
+    padding: calc(100vh/99);
+
+    border-radius: var(--radius);
 }
 
 /* ===================================================== FOOTER */
@@ -98,6 +145,8 @@ footer{
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    margin-top: calc(100vh/10);
 
     bottom:0;
 }
