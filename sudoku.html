@@ -13,10 +13,11 @@
         <h1>Sudoku</h1>
         <h2 id="difficulty"></h2>
         <div id="difficulty_container">
-            <button id="easy_button">Easy</button>
-            <button id="medium_button">Medium</button>
-            <button id="hard_button">Hard</button>
+            <button id="easy_button" onclick="retrieve_easy_grid()" >Easy</button>
+            <button id="medium_button" onclick="retrieve_medium_grid()" >Medium</button>
+            <button id="hard_button" onclick="retrieve_hard_grid()" >Hard</button>
         </div>
+        <div id="throbber"></div>
 
     </header>
     <div id="container">

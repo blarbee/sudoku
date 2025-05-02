@@ -22,11 +22,11 @@
 :root.purple {
     --text: #f4f4f6;
     --background: #2E005D;
-    --primary: #5C008B;
-    --secondary: #c2b3d1;
+    --primary: #733b8f;
+    --secondary: #cfc3da;
     --tertiary: #FF8300;
 
-    --starting_cell: #ad9abf;
+    --starting_cell: #bfafcd;
 
     --radius: 6px;
 
@@ -61,12 +61,17 @@ header{
 #difficulty{
     margin-bottom: 1%;
 }
+
+#throbber {
+    font-size: 1rem;
+    margin-top: 2%;
+}
 /* ===================================================== GRID */
 #grid {
     border: 3px solid var(--primary);
     border-radius: var(--radius);
     margin:auto;
-    margin-top: calc(100vh/10);
+    margin-top: calc(100vh/12);
 }
 /* ===================================================== ROWS */
 .row {
@@ -124,7 +129,7 @@ header{
     margin-top: calc(100vh/99);
 }
 
-.number_button:active {
+button:active {
     background-color: var(--tertiary);
 }
 .selected{
@@ -150,3 +155,6 @@ footer{
 
     bottom:0;
 }
+
+
+/* TODO: implement phone layout */
