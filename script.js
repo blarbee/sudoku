@@ -30,6 +30,7 @@ function fill_up_the_starting_grid(data){
             if(og_value != 0){
                 empty_cell.innerHTML = og_value;
                 empty_cell.classList.add("starting_cell");
+ 
                 // console.log(empty_cell);
             }
         }
@@ -43,7 +44,7 @@ function check_if_completed_grid_is_valid(){
 
             if(cell.innerHTML != grid_solution[i][j]){
                 console.log("false " + cell.innerHTML, grid_solution[i][j]);
-                document.getElementById("throbber").innerHTML = "you're done and wrong i fear"
+                document.getElementById("throbber").innerHTML = "you're done and wrong"
                 return false;
             }
         }
@@ -71,7 +72,7 @@ function write_number(){
     for(let i = 0; i < selected_number.length; i++) {
         selected_number[i].addEventListener("click", function() {
 
-            if(selected_cell){
+            if(selected_cell && !selected_cell.classList.contains("starting_cell")){
                 selected_cell.innerHTML = selected_number[i].id;
                 // console.log(selected_number[i].id);
                 // console.log(selected_cell);
@@ -80,7 +81,7 @@ function write_number(){
     }
 }
 // TODO: Implement erase_input prolly an eraser button could be remove input if cell has input already
-// TODO: !!!1 user can change the starter valueeesssss thats awful fix it
+
 function select_cell(){
     cells = document.getElementsByClassName('cell');
     
@@ -124,7 +125,7 @@ function grid_is_full(){
             return false;
         }   
     }
-    console.log("the grid is full");  
+    // console.log("the grid is full");  
     check_if_completed_grid_is_valid();
     return true;
 
@@ -232,3 +233,5 @@ function clear_grid(){
         cells[i].classList.remove("starting_cell");
     }
 }
+
+// TODO: implement note taking functionnality
