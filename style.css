@@ -3,7 +3,7 @@
     --background: #000000;
     --primary: #66666e;
     --secondary: #9999a1;
-    --tertiary: #f4f4f6;
+    --tertiary: #8b0000;
     --starting_cell: #87878f;
 
     --radius: 6px;
@@ -13,7 +13,7 @@
     --background: #274c77;
     --primary: #6096ba;
     --secondary: #a3cef1;
-    --tertiary: #8b8c89;
+    --tertiary: #89cd00;
     --starting_cell: #8cbbe1;
 
     --radius: 6px;
@@ -22,11 +22,11 @@
 :root.purple {
     --text: #f4f4f6;
     --background: #2E005D;
-    --primary: #733b8f;
+    --primary: #74458b;
     --secondary: #cfc3da;
     --tertiary: #FF8300;
 
-    --starting_cell: #bfafcd;
+    --starting_cell: #b4a1c5;
 
     --radius: 6px;
 
@@ -148,7 +148,7 @@ img {
     margin-top: calc(100vh/99);
 }
 
-button:active {
+button:active, img:active {
     background-color: var(--tertiary);
 }
 .selected{
@@ -162,6 +162,10 @@ button:active {
     padding: calc(100vh/99);
 
     border-radius: var(--radius);
+}
+#black:active, #blue:active, #purple:active, #easy_button:active, #medium_button:active, #hard_button:active{
+    background-color: var(--tertiary);
+
 }
 
 /* ===================================================== FOOTER */

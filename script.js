@@ -10,6 +10,9 @@ let cells = null;
 let difficulty = null;
 let selected_cell = null;
 
+let eraser = document.getElementById("eraser");
+
+
 window.onload = function(){setGame();}
 window.setInterval(grid_is_full, 1000);
 
@@ -80,7 +83,6 @@ function write_number(){
         })
     }
 }
-// TODO: Implement erase_input prolly an eraser button could be remove input if cell has input already
 
 function select_cell(){
     cells = document.getElementsByClassName('cell');
@@ -95,6 +97,7 @@ function select_cell(){
                 cells[i].classList.remove("selected");
                 // console.log(cells[i].id + " is unselected");
 
+
             }else{
                 // TODO: doesnt seem optimal to loop that much, do better soon
                 for (let j = 0; j < cells.length; j++) {
@@ -105,6 +108,7 @@ function select_cell(){
                 cells[i].classList.add("selected");
                 selected_cell = document.getElementById(cells[i].id);
                 // console.log(cells[i].id + " is selected");
+
 
             }
             // TODO: Add highlight the row and col of the selected_cell (possibly also add highlight other occurences of said selected_cell's innerhtml in the row/col)
@@ -234,4 +238,20 @@ function clear_grid(){
     }
 }
 
+function erase_number(){
+    // console.log(eraser);
+
+    // if(eraser.classList.contains("selected")){
+    //     eraser.classList.remove("selected");
+    // }else{
+    //     eraser.classList.add("selected");
+    // }
+    if(selected_cell){
+        if(!selected_cell.classList.contains("starting_cell")){
+            selected_cell.innerHTML = "";
+        }
+    }
+}
+
 // TODO: implement note taking functionnality
+function note_taking(){}
