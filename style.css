@@ -1,35 +1,29 @@
 :root, :root.black {
-    --text: #e6e6e9;
+    --text: #ffffff;
     --background: #000000;
-    --primary: #66666e;
-    --secondary: #9999a1;
-    --tertiary: #8b0000;
-    --starting_cell: #87878f;
-
+    --primary: #404040;
+    --secondary: #808080;
+    --tertiary: #C0C0C0;
+    --starting_cell: #606060;
     --radius: 6px;
 }
 :root.blue {
-    --text: #e7ecef;
+    --text: #f0c954;
     --background: #274c77;
     --primary: #6096ba;
     --secondary: #a3cef1;
-    --tertiary: #89cd00;
+    --tertiary: #bf921f;
     --starting_cell: #8cbbe1;
-
     --radius: 6px;
-
 }
 :root.purple {
-    --text: #f4f4f6;
+    --text: #fbc489;
     --background: #2E005D;
     --primary: #74458b;
     --secondary: #cfc3da;
-    --tertiary: #FF8300;
-
+    --tertiary: #e98e2d;
     --starting_cell: #b4a1c5;
-
     --radius: 6px;
-
 }
 
 *{
@@ -66,6 +60,10 @@ header{
     font-size: 1rem;
     margin-top: 2%;
 }
+
+
+
+
 /* ===================================================== GRID */
 #grid {
     border: 3px solid var(--primary);
@@ -82,6 +80,8 @@ header{
 .row:nth-child(3), .row:nth-child(6) {
     border-bottom: 3px solid var(--primary);
 }
+
+
 /* ===================================================== CELLS */
 .cell {
     border-right: 1px solid var(--primary);
@@ -142,6 +142,7 @@ img {
     color:var(--background);
 
     border-radius: var(--radius);
+    border: 2px solid var(--tertiary);
     box-shadow: var(--tertiary) 10px;
 
     margin: 3px;
@@ -151,9 +152,7 @@ img {
 button:active, img:active {
     background-color: var(--tertiary);
 }
-.selected{
-    background-color: var(--text);
-}
+
 /* ===================================================== OPTION BUTTONS */
 #black, #blue, #purple, #easy_button, #medium_button, #hard_button {
     background-color: var(--secondary);
@@ -179,5 +178,12 @@ footer{
     bottom:0;
 }
 
-
+/* ===================================================== SELECTIONS (override previous styles) */
+.selectedRowCol{
+    /* border: 2px solid var(--tertiary); */
+    background-color: var(--tertiary);
+}
+.selected{
+    background-color: var(--text);
+}
 /* TODO: implement phone layout */

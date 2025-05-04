@@ -10,7 +10,10 @@ let cells = null;
 let difficulty = null;
 let selected_cell = null;
 
+let insertions = null;
+
 let eraser = document.getElementById("eraser");
+let pencil = document.getElementById("pencil");
 
 
 window.onload = function(){setGame();}
@@ -86,37 +89,35 @@ function write_number(){
 
 function select_cell(){
     cells = document.getElementsByClassName('cell');
-    
+
 
     for(let i = 0; i < cells.length; i++) {
         cells[i].addEventListener("click", function() {
-
-
-            if(cells[i].classList.contains("selected")){
-
-                cells[i].classList.remove("selected");
-                // console.log(cells[i].id + " is unselected");
-
-
-            }else{
-                // TODO: doesnt seem optimal to loop that much, do better soon
-                for (let j = 0; j < cells.length; j++) {
-                    cells[j].classList.remove("selected");
-                    // console.log(selected_cell[j].id + " is deselected automatically");
-                }
+     
+            for (let j = 0; j < cells.length; j++) { // uncelect everything
+                cells[j].classList.remove("selected");
+                cells[j].classList.remove("selectedRowCol");
+            }
+        
+            if(!cells[i].classList.contains("selected")){ // if when clicked unselected, select it
 
                 cells[i].classList.add("selected");
+                console.log(cells[i].id + " is selected");
                 selected_cell = document.getElementById(cells[i].id);
-                // console.log(cells[i].id + " is selected");
 
-
+                for (let j = 0; j < 9; j++) {
+                    let row = Math.floor(i/9);
+                    let col = i%9;
+                    // console.log("row: " + Math.floor(i/9)); //row of the selected cell
+                    // console.log("col: " + i%9); //colomn of the selected cell
+                    document.getElementById(row + "-" + j).classList.add("selectedRowCol");
+                    document.getElementById(j + "-" + col).classList.add("selectedRowCol");
+                }
+                console.log(cells[i].classList);
             }
-            // TODO: Add highlight the row and col of the selected_cell (possibly also add highlight other occurences of said selected_cell's innerhtml in the row/col)
-            // if(selected_cell){
-            //     console.log("row: " + Math.floor(i/9)); //row of the selected cell
-            //     console.log("col: " + i%9); //colomn the selected cell
-            // }
-        })
+
+
+        });
     }
 }
 
@@ -254,4 +255,15 @@ function erase_number(){
 }
 
 // TODO: implement note taking functionnality
-function note_taking(){}
+function note_taking(){
+    console.log(pencil);
+
+    if(pencil.classList.contains("selected")){
+        pencil.classList.remove("selected");
+    }else{
+        pencil.classList.add("selected");
+    }
+
+}
+
+// TODO: implement trivia/pokemon quiz every 9 insertions or every 2min (might get frustrating and not fun so idk ill think about it)
